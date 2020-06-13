@@ -6,10 +6,8 @@ using UnityEngine;
 
 public class BuildScript
 {
-    
-    public static string APP_FOLDER = Directory.GetCurrentDirectory ();
 
-    public static string IOS_FOLDER = string.Format ("{0}/Builds/iOS/", APP_FOLDER);
+    public static string IOS_FOLDER = "./Builds/iOS/";
 
     static string[] GetScenes () {
             List<string> scenes = new List<string> ();
