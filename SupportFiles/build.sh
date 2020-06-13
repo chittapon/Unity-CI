@@ -28,7 +28,7 @@ echo "$IOS_PATH"
 echo ''
 echo 'build unity...' 
 echo '' 
-$UNITY -batchmode -quit -executeMethod BuildScript.iOSRelease -buildTarget ios -logFile "$LOGS_PATH/ios_release.log"
+$UNITY -batchmode -quit -executeMethod BuildScript.iOSRelease -buildTarget ios
 if [ $? -ne 0 ]; then
 echo ''
 echo 'Operation failed!'
@@ -40,11 +40,11 @@ echo 'archive xcode...'
 echo '' 
 BUILD_NUMBER=$(($BUILD_NUMBER + 1))
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" "$IOS_PATH/$INFOPLIST_FILE"
-xcodebuild -project "$IOS_PATH/Unity-iPhone.xcodeproj" -scheme "Unity-iPhone" archive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE" CODE_SIGN_IDENTITY="$SIGNING_IDENTITY" -quiet > "$LOGS_PATH/ios_archive_release.log" 2>&1
+xcodebuild -project "$IOS_PATH/Unity-iPhone.xcodeproj" -scheme "Unity-iPhone" archive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE" CODE_SIGN_IDENTITY="$SIGNING_IDENTITY"
 echo ''
 echo 'export ipa...' 
 echo '' 
-xcodebuild -exportArchive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" -exportOptionsPlist "release/options.plist" -exportPath $IOS_RELEASE -quiet > "$LOGS_PATH/ios_export_release.log" 2>&1
+xcodebuild -exportArchive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" -exportOptionsPlist "release/options.plist" -exportPath $IOS_RELEASE
 echo ''
 echo 'validating...' 
 echo ''
