@@ -5,7 +5,7 @@ node ('master'){
     }
     
     stage ("Build/Deploy") {
-        sh './build.sh'
+        sh './SupportFiles/build.sh'
     }
 
 }
