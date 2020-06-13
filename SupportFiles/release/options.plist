@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>method</key>
+	<string>app-store</string>
+	<key>teamID</key>
+	<string>BT896L4Y6Y</string>
+	<key>signingStyle</key>
+	<string>distribution</string>
+	<key>provisioningProfiles</key>
+	<dict>
+		<key>com.pap.unityci</key>
+		<string>4233980a-acb6-41b4-bf69-f724f5c90f2d</string>
+	</dict>
+</dict>
+</plist>
