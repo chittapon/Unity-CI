@@ -1,6 +1,7 @@
 #!/bin/bash
 
-PROJECT_PATH="$(dirname "$(PWD)")""/Unity CI"
+JENKINS_PIPELINE_NAME="Unity CI"
+PROJECT_PATH="$(dirname "$(PWD)")""/$JENKINS_PIPELINE_NAME"
 
 UNITY='/Applications/Unity/Hub/Editor/2020.1.0b12/Unity.app/Contents/MacOS/Unity'
 
@@ -31,7 +32,7 @@ echo "$IOS_PATH"
 echo ''
 echo 'build unity...' 
 echo '' 
-$UNITY -batchmode -quit -executeMethod BuildScript.iOSRelease -buildTarget ios -logFile "$LOGS_PATH/ios_release.log"
+$UNITY -batchmode -quit -projectPath "$PROJECT_PATH" -executeMethod BuildScript.iOSRelease -buildTarget ios -logFile "$LOGS_PATH/ios_release.log"
 if [ $? -ne 0 ]; then
 echo ''
 echo 'Operation failed!'
