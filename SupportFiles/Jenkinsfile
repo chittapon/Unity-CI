@@ -1,6 +1,11 @@
 node ('master'){
-    stage 'Checkout master'
-    checkout scm
-    stage "Build/Deploy"
-    sh('build.sh')
+
+    stage ('Checkout master') {
+        checkout scm
+    }
+    
+    stage ("Build/Deploy") {
+        sh './build.sh'
+    }
+
 }
