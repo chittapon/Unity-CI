@@ -26,8 +26,12 @@ echo 'clean ios directory...'
 echo ''
 
 BUILD_NUMBER=$(/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "$IOS_PATH/$INFOPLIST_FILE")
-rm -r $IOS_PATH
+BUILD_NUMBER=$(($BUILD_NUMBER + 1))
+rm -r "$IOS_PATH"
 fi
+echo ''
+echo 'build version: '"$BUILD_NUMBER" 
+echo '' 
 echo ''
 echo 'build unity...' 
 echo '' 
@@ -40,7 +44,8 @@ exit 1
 fi
 echo ''
 echo 'archive xcode...' 
-echo '' 
+echo ''
+/usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" "$IOS_PATH/$INFOPLIST_FILE"
 xcodebuild -project "$IOS_PATH/Unity-iPhone.xcodeproj" -scheme "Unity-iPhone" archive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE" CODE_SIGN_IDENTITY="$SIGNING_IDENTITY" -quiet > "$LOGS_PATH/ios_archive_release.log" 2>&1
 echo ''
 echo 'export ipa...' 
