@@ -45,7 +45,7 @@ xcodebuild -project "$IOS_PATH/Unity-iPhone.xcodeproj" -scheme "Unity-iPhone" ar
 echo ''
 echo 'export ipa...' 
 echo '' 
-xcodebuild -exportArchive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" -exportOptionsPlist "SupportFiles/release/options.plist" -exportPath $IOS_RELEASE -quiet > "$LOGS_PATH/ios_export_release.log" 2>&1
+xcodebuild -exportArchive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" -exportOptionsPlist "SupportFiles/release/options.plist" -exportPath "$IOS_RELEASE" -quiet > "$LOGS_PATH/ios_export_release.log" 2>&1
 echo ''
 echo 'validating...' 
 echo ''
