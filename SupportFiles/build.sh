@@ -2,7 +2,7 @@
 
 PROJECT_PATH="$(dirname "$(PWD)")"
 
-UNITY='/Applications/Unity/Hub/Editor/2020.1.0b12/Unity.app/Contents/MacOS/Unity'
+UNITY='/Applications/Unity/Hub/Editor/2020.1.0b12/Unity.app/Contents/MacOS/'
 
 LOGS_PATH=$PROJECT_PATH'/Logs'
 ANDROID_PATH=$PROJECT_PATH'/Builds/Android'
@@ -16,6 +16,13 @@ INFOPLIST_FILE='Info.plist'
 SIGNING_IDENTITY="Apple Distribution: Chittapon Thongchim"
 PROVISIONING_PROFILE="4233980a-acb6-41b4-bf69-f724f5c90f2d"
 BUILD_NUMBER="1"
+
+
+for entry in "/Applications/Unity/Hub/Editor/2020.1.0b12/"/*
+do
+  echo "$entry"
+done
+exit 0
 
 if [ -d "$IOS_PATH" ]; then
 echo ''
