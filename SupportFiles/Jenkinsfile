@@ -4,8 +4,12 @@ node ('master'){
         checkout scm
     }
     
-    stage ("Build/Deploy") {
+    stage ("Build") {
         sh './SupportFiles/build.sh'
     }
 
+    stage ("Deploy") {
+        sh './SupportFiles/deploy.sh'
+    }
+    
 }

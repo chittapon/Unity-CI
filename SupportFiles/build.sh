@@ -30,9 +30,6 @@ BUILD_NUMBER=$(($BUILD_NUMBER + 1))
 rm -r "$IOS_PATH"
 fi
 echo ''
-echo 'build version: '"$BUILD_NUMBER" 
-echo '' 
-echo ''
 echo 'build unity...' 
 echo '' 
 $UNITY -batchmode -quit -projectPath "$PROJECT_PATH" -executeMethod BuildScript.iOSRelease -buildTarget ios -logFile "$LOGS_PATH/ios_release.log"
@@ -43,19 +40,10 @@ echo ''
 exit 1
 fi
 echo ''
+echo 'build version: '"$BUILD_NUMBER" 
+echo '' 
+echo ''
 echo 'archive xcode...' 
 echo ''
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD_NUMBER" "$IOS_PATH/$INFOPLIST_FILE"
 xcodebuild -project "$IOS_PATH/Unity-iPhone.xcodeproj" -scheme "Unity-iPhone" archive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" PROVISIONING_PROFILE_SPECIFIER="$PROVISIONING_PROFILE" CODE_SIGN_IDENTITY="$SIGNING_IDENTITY" -quiet > "$LOGS_PATH/ios_archive_release.log" 2>&1
-echo ''
-echo 'export ipa...' 
-echo '' 
-xcodebuild -exportArchive -archivePath "$IOS_RELEASE/Unity-iPhone.xcarchive" -exportOptionsPlist "SupportFiles/release/options.plist" -exportPath "$IOS_RELEASE" -quiet > "$LOGS_PATH/ios_export_release.log" 2>&1
-echo ''
-echo 'validating...' 
-echo ''
-xcrun altool --validate-app -f "$IOS_RELEASE/Unity-iPhone.ipa" --apiKey Z23NQ47D86 --apiIssuer 47c78144-ee93-4eec-8f89-278d395255a5 —verbose
-echo ''
-echo 'uploading...' 
-echo ''
-xcrun altool --upload-app --file "$IOS_RELEASE/Unity-iPhone.ipa" --apiKey Z23NQ47D86 --apiIssuer 47c78144-ee93-4eec-8f89-278d395255a5 —verbose
